@@ -15,7 +15,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: '22'
 
 jobs:
   build:
@@ -26,16 +26,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-          cache-dependency-path: |
-            frontend/package-lock.json
-            landing/package-lock.json
 
       - name: Resolve repo subpath
         id: subpath
         run: |
           REPO_NAME="${GITHUB_REPOSITORY#*/}"
-          echo "name=$REPO_NAME" >> $GITHUB_OUTPUT
+          echo "name=$REPO_NAME" >> "$GITHUB_OUTPUT"
           echo "Deploying to /$REPO_NAME/"
 
       - name: Sync products dataset into both apps
@@ -44,7 +40,11 @@ jobs:
       # ------------------ Internal app (B2B) ------------------
       - name: Install internal app deps
         working-directory: frontend
-        run: npm ci --no-audit --no-fund
+        run: |
+          node -v
+          npm -v
+          ls -la
+          npm ci --no-audit --no-fund
 
       - name: Build internal app
         working-directory: frontend
@@ -76,7 +76,6 @@ jobs:
           mkdir -p dist/internal dist/landing
           cp -R frontend/dist/. dist/internal/
           cp -R landing/dist/. dist/landing/
-          # SPA fallback so deep links work on Pages
           cp dist/internal/index.html dist/internal/404.html
           cp dist/landing/index.html dist/landing/404.html
           cp docs/site-index.html dist/index.html
