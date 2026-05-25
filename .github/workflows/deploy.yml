@@ -44,7 +44,7 @@ jobs:
           node -v
           npm -v
           ls -la
-          npm ci --no-audit --no-fund
+          npm install --no-audit --no-fund 2>&1 | tail -80
 
       - name: Build internal app
         working-directory: frontend
@@ -59,7 +59,7 @@ jobs:
       # ------------------ Landing page (B2C) ------------------
       - name: Install landing deps
         working-directory: landing
-        run: npm ci --no-audit --no-fund
+        run: npm install --no-audit --no-fund 2>&1 | tail -80
 
       - name: Build landing
         working-directory: landing
