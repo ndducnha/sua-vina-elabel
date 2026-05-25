@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sữa Vina — Hệ thống nhãn điện tử (Demo)</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #1d4ed8;
+        --primary-soft: #eff6ff;
+        --text: #0f172a;
+        --muted: #64748b;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        min-height: 100vh;
+        background: linear-gradient(180deg, #eaf3ff 0%, #ffffff 60%);
+        font-family: Inter, system-ui, -apple-system, sans-serif;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 16px;
+      }
+      .wrap { max-width: 720px; width: 100%; text-align: center; }
+      .badge {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: var(--primary-soft); color: var(--primary);
+        padding: 6px 14px; border-radius: 999px; font-size: 12px;
+        font-weight: 600; letter-spacing: 0.1em;
+      }
+      h1 {
+        margin-top: 18px;
+        font-family: 'Playfair Display', serif;
+        font-style: italic;
+        font-size: clamp(28px, 5vw, 42px);
+        font-weight: 600;
+        color: #1e3a5c;
+      }
+      .lead {
+        margin-top: 12px; color: var(--muted); font-size: 16px; line-height: 1.6;
+      }
+      .grid {
+        margin-top: 40px;
+        display: grid;
+        gap: 20px;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 720px) {
+        .grid { grid-template-columns: 1fr 1fr; }
+      }
+      .card {
+        background: white;
+        border: 1px solid #dbeafe;
+        border-radius: 24px;
+        padding: 28px 24px;
+        text-align: left;
+        box-shadow: 0 30px 60px -30px rgba(30, 58, 92, 0.25);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+        text-decoration: none;
+        color: inherit;
+      }
+      .card:hover { transform: translateY(-3px); box-shadow: 0 30px 60px -20px rgba(30, 58, 92, 0.35); }
+      .card .ico {
+        width: 44px; height: 44px; border-radius: 12px;
+        background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
+        color: white; display: flex; align-items: center; justify-content: center;
+        font-weight: 800;
+      }
+      .card h2 { margin-top: 14px; font-size: 18px; font-weight: 700; color: #1e3a5c; }
+      .card p { margin-top: 8px; color: var(--muted); font-size: 14px; line-height: 1.55; }
+      .card .meta { margin-top: 14px; font-size: 12px; color: var(--primary); font-weight: 600; }
+      footer {
+        margin-top: 40px; color: var(--muted); font-size: 12px;
+      }
+      footer code {
+        background: #f1f5f9; padding: 2px 6px; border-radius: 4px;
+        font-family: ui-monospace, monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <span class="badge">SỮA VINA · DEMO TĨNH</span>
+      <h1>Hệ thống nhãn điện tử nội bộ</h1>
+      <p class="lead">
+        Phiên bản demo chạy hoàn toàn trên trình duyệt — không backend, không database.
+        Dữ liệu nằm trong <code>products.json</code>; mọi thay đổi (đồng bộ, cài đặt) chỉ lưu cục bộ trên trình duyệt của bạn.
+      </p>
+
+      <div class="grid">
+        <a class="card" href="./internal/">
+          <div class="ico">🏢</div>
+          <h2>Hệ thống nội bộ (B2B)</h2>
+          <p>Quản lý nhãn điện tử, kho, đơn hàng, đại lý, báo cáo. Đăng nhập demo: <strong>admin / 123456</strong>.</p>
+          <div class="meta">Mở ứng dụng nội bộ →</div>
+        </a>
+
+        <a class="card" href="./landing/">
+          <div class="ico">🥛</div>
+          <h2>Trang nhãn sản phẩm (B2C)</h2>
+          <p>Trang truy xuất nguồn gốc cho người tiêu dùng. Mở mẫu sản phẩm sữa tươi, sữa chua, sữa bột...</p>
+          <div class="meta">Xem trang nhãn mẫu →</div>
+        </a>
+      </div>
+
+      <footer>
+        © Công ty Cổ phần Sữa Vina · <a href="./landing/01/8938500000011?tax_code=0312345678" style="color:var(--primary);text-decoration:none">Mẫu nhãn sữa tươi 1L</a>
+      </footer>
+    </div>
+  </body>
+</html>

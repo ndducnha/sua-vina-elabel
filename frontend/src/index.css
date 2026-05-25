@@ -1,0 +1,413 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@custom-variant dark (&:is(.dark *));
+/* `narrow:` = max-width 450px (login uses first; reusable elsewhere) */
+@custom-variant narrow (@media (max-width: 450px));
+
+@font-face {
+  font-family: "SVN-Black";
+  src:
+    local("SVN-GILROY-BLACK"),
+    url("./assets/fonts/SVN-GILROY-BLACK.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-Black-Italic";
+  src:
+    local("SVN-GILROY-BLACK-ITALIC"),
+    url("./assets/fonts/SVN-GILROY-BLACK-ITALIC.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-Bold-Italic";
+  src:
+    local("SVN-GILROY-BOLD-ITALIC"),
+    url("./assets/fonts/SVN-GILROY-BOLD-ITALIC.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-Bold";
+  src:
+    local("SVN-GILROY-BOLD"),
+    url("./assets/fonts/SVN-GILROY-BOLD.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-Heavy-Italic";
+  src:
+    local("SVN-GILROY-HEAVY-ITALIC"),
+    url("./assets/fonts/SVN-GILROY-HEAVY-ITALIC.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-Heavy";
+  src:
+    local("SVN-GILROY-HEAVY"),
+    url("./assets/fonts/SVN-GILROY-HEAVY.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-Italic";
+  src:
+    local("SVN-GILROY-ITALIC"),
+    url("./assets/fonts/SVN-GILROY-ITALIC.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-Light-Italic";
+  src:
+    local("SVN-GILROY-LIGHT-ITALIC"),
+    url("./assets/fonts/SVN-GILROY-LIGHT-ITALIC.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-Light";
+  src:
+    local("SVN-GILROY-LIGHT"),
+    url("./assets/fonts/SVN-GILROY-LIGHT.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-Medium-Italic";
+  src:
+    local("SVN-GILROY-MEDIUM-ITALIC"),
+    url("./assets/fonts/SVN-GILROY-MEDIUM-ITALIC.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-Medium";
+  src:
+    local("SVN-GILROY-MEDIUM"),
+    url("./assets/fonts/SVN-GILROY-MEDIUM.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-Regular";
+  src:
+    local("SVN-GILROY-REGULAR"),
+    url("./assets/fonts/SVN-GILROY-REGULAR.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-SemiBold-Italic";
+  src:
+    local("SVN-GILROY-SEMIBOLD-ITALIC"),
+    url("./assets/fonts/SVN-GILROY-SEMIBOLD-ITALIC.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-SemiBold";
+  src:
+    local("SVN-GILROY-SEMIBOLD"),
+    url("./assets/fonts/SVN-GILROY-SEMIBOLD.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-Thin-Italic";
+  src:
+    local("SVN-GILROY-THIN-ITALIC"),
+    url("./assets/fonts/SVN-GILROY-THIN-ITALIC.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-Thin";
+  src:
+    local("SVN-GILROY-THIN"),
+    url("./assets/fonts/SVN-GILROY-THIN.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-XBold-Italic";
+  src:
+    local("SVN-GILROY-XBOLD-ITALIC"),
+    url("./assets/fonts/SVN-GILROY-XBOLD-ITALIC.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-XBold";
+  src:
+    local("SVN-GILROY-XBOLD"),
+    url("./assets/fonts/SVN-GILROY-XBOLD.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-XLight-Italic";
+  src:
+    local("SVN-GILROY-XLIGHT-ITALIC"),
+    url("./assets/fonts/SVN-GILROY-XLIGHT-ITALIC.OTF") format("opentype");
+}
+
+@font-face {
+  font-family: "SVN-XLight";
+  src:
+    local("SVN-GILROY-XLIGHT"),
+    url("./assets/fonts/SVN-GILROY-XLIGHT.OTF") format("opentype");
+}
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-bg-primary: var(--bg-primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-tooltip-popover: var(--tooltip-popover);
+  --color-tooltip-popover-foreground: var(--tooltip-popover-foreground);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --color-gray-43: var(--gray-43);
+  --color-gray-19: var(--gray-19);
+  --color-gray-7a: var(--gray-7a);
+  --color-gray-2c: var(--gray-2c);
+  --color-gray-5e: var(--gray-5e);
+  --color-gray-e1: var(--gray-e1);
+  --color-gray-ee: var(--gray-ee);
+  --color-grey-d0d: var(--grey-d0d);
+  --color-blue-2f: var(--blue-2f);
+  --color-blue-99: var(--blue-99);
+  --color-blue-eef: var(--blue-eef);
+  --color-blue-002: var(--blue-002);
+  --color-blue-2c3: var(--blue-2c3);
+  --color-orange-f06: var(--orange-f06);
+  --color-red-d32: var(--red-d32);
+  --color-red-ee7: var(--red-ee7);
+  --color-purple-50: var(--purple-50);
+  --color-purple-200: var(--purple-200);
+  --color-purple-500: var(--purple-500);
+  /* --------------------------------------------------------------------------- */
+
+  --color-grey-f6: var(--grey-f6);
+  --color-grey-c6d0: var(--grey-c6d0);
+  --color-grey-78: var(--grey-78);
+  --color-blue-204: var(--blue-204);
+  --color-login-bg: var(--login-bg);
+  --color-black-1f: var(--black-1f);
+
+  --color-page-bg: var(--page-bg);
+  --color-main-text: var(--main-text);
+  --color-nav-active-bg: var(--nav-active-bg);
+  --color-nav-active-text: var(--nav-active-text);
+
+  --color-success-50: var(--color-success-50);
+  --color-success-200: var(--color-success-200);
+  --color-success-500: var(--color-success-500);
+  --color-warning-50: var(--color-warning-50);
+  --color-warning-200: var(--color-warning-200);
+  --color-warning-500: var(--color-warning-500);
+  --color-error-50: var(--color-error-50);
+  --color-error-200: var(--color-error-200);
+  --color-error-500: var(--color-error-500);
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --tooltip-popover: #2c3140;
+  --tooltip-popover-foreground: #c9ceda;
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  --grey-f6: #f6f6f6;
+  --grey-c6d0: #c6e0ff;
+  --grey-78: #78899f;
+  --login-bg: #f4f8ff;
+  --black-1f: #1f1f1f;
+
+  --gray-43: #43485a;
+  --gray-19: #191c26;
+  --gray-7a: #7a8194;
+  --gray-2c: #2c3140;
+  --gray-5e: #5e6477;
+  --gray-e1: #e1e4ed;
+  --gray-ee: #eef0f6;
+  --grey-d0d: #d0d5dd;
+  /* Sữa Vina palette — clean white + soft/medium blue, no orange */
+  --blue-2f: #2563eb;       /* primary action */
+  --blue-99: #93c5fd;       /* light accent */
+  --blue-eef: #eff6ff;      /* page background tint */
+  --blue-002: #1e40af;      /* deep brand */
+  --blue-2c3: #0f172a;      /* main text */
+  --orange-f06: #2563eb;    /* legacy alias remapped to brand blue */
+  --red-d32: #d32f2f;
+  --red-ee7: #ee7d80;
+  --purple-50: #F2F0FF;
+  --purple-200: #C9C2FF;
+  --purple-500: #6E5AE6;
+  /* --------------------------------------------------------------------------------------- */
+
+  /* MainLayout theme tokens (Sữa Vina: white + blue) */
+  --page-bg: #ffffff;
+  --main-text: #0f172a;
+  --nav-active-bg: #dbeafe;
+  --nav-active-text: #1e40af;
+
+  --color-brand-primary: #1e40af;
+  --color-brand-primary-foreground: #ffffff;
+  --primary: var(--color-brand-primary);
+  --primary-foreground: var(--color-brand-primary-foreground);
+  --secondary: #3b82f6;
+  --secondary-foreground: #ffffff;
+  --bg-primary: #eff6ff;
+
+  --blue-204: var(--color-brand-primary);
+
+  /* Status palettes: 50 = nền nhẹ, 200 = border, 500 = mặc định / icon chính */
+  --color-success-50: #ecfdf5;
+  --color-success-200: #a7f3d0;
+  --color-success-500: #0ea371;
+  --color-warning-50: #fff6e5;
+  --color-warning-200: #ffd08a;
+  --color-warning-500: #b86305;
+  --color-error-50: #fdecec;
+  --color-error-200: #f4a8aa;
+  --color-error-500: #d32f2f;
+
+  /* Global scrollbars (Firefox + WebKit) */
+  --scrollbar-size: 6px;
+  --scrollbar-thumb: oklch(0.55 0 0 / 0.38);
+  --scrollbar-thumb-hover: oklch(0.45 0 0 / 0.5);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+
+  --scrollbar-thumb: oklch(0.72 0 0 / 0.4);
+  --scrollbar-thumb-hover: oklch(0.82 0 0 / 0.5);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+  }
+
+  /* WebKit / Chromium / Safari: thin track, no stepper arrows */
+  *::-webkit-scrollbar {
+    width: var(--scrollbar-size);
+    height: var(--scrollbar-size);
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 9999px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
+  }
+
+  *::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  html {
+    @apply font-sans;
+    font-optical-sizing: auto;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

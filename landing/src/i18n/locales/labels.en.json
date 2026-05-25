@@ -1,0 +1,20 @@
+{
+  "portal": "Sữa Vina Traceability Portal",
+  "langSwitch": "VI",
+  "labelTab": "Digital Label",
+  "mfrTab": "Manufacturer",
+  "requiredTitle": "Required Information (Decree 37/2026)",
+  "customTitle": "Interministry Requirements",
+  "mediaTitle": "Additional Resources",
+  "imagesTitle": "Product Images",
+  "videosTitle": "Videos",
+  "docsTitle": "Documents and Certificates",
+  "mfrTitle": "Manufacturer Information",
+  "companyName": "Company Name",
+  "gcpCode": "GCP Code (GS1)",
+  "email": "Email",
+  "phone": "Phone",
+  "address": "Address",
+  "updated": "Updated",
+  "verified": "Verified"
+}

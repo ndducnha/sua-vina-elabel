@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" width="1600" height="1200" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eff6ff"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <radialGradient id="bubble" cx="0.3" cy="0.3" r="0.7">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#dbeafe" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wave" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#60a5fa" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#bfdbfe" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1200" fill="url(#sky)"/>
+
+  <!-- Soft milk-droplet bubbles scattered -->
+  <g opacity="0.55">
+    <circle cx="180" cy="220" r="120" fill="url(#bubble)"/>
+    <circle cx="1400" cy="180" r="180" fill="url(#bubble)"/>
+    <circle cx="320" cy="900" r="160" fill="url(#bubble)"/>
+    <circle cx="1280" cy="940" r="200" fill="url(#bubble)"/>
+    <circle cx="820" cy="500" r="90" fill="url(#bubble)"/>
+    <circle cx="600" cy="240" r="60" fill="url(#bubble)"/>
+    <circle cx="1100" cy="680" r="70" fill="url(#bubble)"/>
+  </g>
+
+  <!-- Flowing milk waves at the bottom -->
+  <path d="M0,950 C300,860 600,1040 900,920 C1200,800 1400,980 1600,880 L1600,1200 L0,1200 Z" fill="url(#wave)"/>
+  <path d="M0,1020 C320,940 640,1100 960,990 C1240,890 1440,1040 1600,960 L1600,1200 L0,1200 Z" fill="#bfdbfe" opacity="0.5"/>
+  <path d="M0,1090 C300,1020 700,1160 1080,1050 C1340,990 1440,1100 1600,1040 L1600,1200 L0,1200 Z" fill="#93c5fd" opacity="0.5"/>
+
+  <!-- Subtle milk droplet shapes -->
+  <g fill="#ffffff" opacity="0.6">
+    <path d="M250,360 Q258,330 270,360 Q278,388 264,398 Q252,406 244,396 Q236,386 250,360 Z"/>
+    <path d="M1320,420 Q1334,376 1356,420 Q1372,464 1346,478 Q1328,490 1316,476 Q1304,460 1320,420 Z"/>
+    <path d="M780,760 Q792,720 808,760 Q822,800 802,816 Q786,828 776,816 Q764,804 780,760 Z"/>
+  </g>
+</svg>

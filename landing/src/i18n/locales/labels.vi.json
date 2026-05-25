@@ -1,0 +1,20 @@
+{
+  "portal": "Cổng truy xuất Sữa Vina",
+  "langSwitch": "EN",
+  "labelTab": "Nhãn điện tử",
+  "mfrTab": "Nhà sản xuất",
+  "requiredTitle": "Thông tin bắt buộc theo Nghị định 37/2026",
+  "customTitle": "Thông tin theo thông tư liên ngành",
+  "mediaTitle": "Thông tin thêm về sản phẩm",
+  "imagesTitle": "Hình ảnh sản phẩm",
+  "videosTitle": "Video",
+  "docsTitle": "Tài liệu và chứng nhận",
+  "mfrTitle": "Thông tin nhà sản xuất",
+  "companyName": "Tên doanh nghiệp",
+  "gcpCode": "Mã GCP (GS1)",
+  "email": "Email",
+  "phone": "Số điện thoại",
+  "address": "Địa chỉ",
+  "updated": "Cập nhật",
+  "verified": "Đã xác thực"
+}

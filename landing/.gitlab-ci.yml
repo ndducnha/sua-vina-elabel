@@ -1,0 +1,82 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  REGISTRY: registry.vcyber.vn/vcybertechnology
+  IMAGE: elabel_landing_page
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+
+# Alert for pipeline failed
+include:
+  - local: .gitlab/alerts/telegram.yml
+
+# Build and push Docker image
+build-image:
+  stage: build
+  image: docker:24.0
+  services:
+    - docker:24.0-dind
+  tags:
+    - docker-build
+  rules:
+    - if: $CI_COMMIT_TAG
+  variables:
+    VITE_API_BASE_URL: $VITE_API_BASE_URL
+    VITE_APP_NAME: $VITE_APP_NAME
+    VITE_USE_MOCK_DATA: $VITE_USE_MOCK_DATA
+  script: |
+    echo "Login to Nexus Registry"
+    echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin
+    TAG=$CI_COMMIT_TAG
+    echo "TAG=$TAG" >> build.env
+    echo "Building image with tag: $TAG"
+    docker build \
+      --build-arg VITE_API_BASE_URL="$VITE_API_BASE_URL" \
+      --build-arg VITE_APP_NAME="$VITE_APP_NAME" \
+      --build-arg VITE_USE_MOCK_DATA="$VITE_USE_MOCK_DATA" \
+      -t $REGISTRY/$IMAGE:$TAG .
+    docker push $REGISTRY/$IMAGE:$TAG
+  artifacts:
+    reports:
+      dotenv: build.env
+
+# Deploy Dev
+deploy-dev:
+  stage: deploy
+  tags:
+    - deploy
+  needs:
+    - job: build-image
+      artifacts: true
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^dev-.*$/'
+  script: |
+    if [ -f build.env ]; then
+      set -a
+      source build.env
+      set +a
+    fi
+    TAG=${TAG:-$CI_COMMIT_TAG}
+    if [ -z "$TAG" ]; then
+      echo "TAG is empty. Skip deploy without failing pipeline."
+      exit 0
+    fi
+    echo "Deploying DEV with tag $TAG"
+    echo "$VPS_SSH_KEY_DEV" | base64 -d > id_rsa
+    chmod 600 id_rsa
+    ssh -o StrictHostKeyChecking=no -i id_rsa $VPS_USERNAME_DEV@$VPS_HOST_DEV << EOF
+      cd ~/elabel-landing-page-dev
+      echo "$DOCKER_PASSWORD" | docker login $REGISTRY -u "$DOCKER_USERNAME" --password-stdin
+      docker pull $REGISTRY/$IMAGE:$TAG
+      export IMAGE_TAG=$TAG
+      docker compose up -d elabel-landing-page-dev
+      docker restart certbot
+      if ! docker exec nginx nginx -t; then
+        echo "Nginx config test failed. Skip reload and fail pipeline."
+        exit 1
+      fi
+      sleep 15s
+      docker exec nginx nginx -s reload
+    EOF
